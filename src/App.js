@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import "./App.css";
+import axios from "axios";
 
 function App() {
+  const baseUrl = `https://random-word-api.herokuapp.com/word?number=1`;
+  const [apiUrl, setApiUrl] = useState(baseUrl);
+  const [word, setWord] = useState("");
+  useEffect(
+    () => axios.get(apiUrl).then((apidata) => setWord(apidata.data)),
+    [apiUrl]
+  );
+  console.log("word", word);
+  console.log("api url", apiUrl);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>{word[0]}</h1>
+      <button onClick={() => setApiUrl(baseUrl + "")}>Change word</button>
     </div>
   );
 }
