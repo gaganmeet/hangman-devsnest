@@ -35,7 +35,7 @@ function App() {
   const [word, setWord] = useState("");
   const [guessList, setGuessList] = useState([]);
   const [guesses, setGuesses] = useState(7);
-  const [game, setGame] = useState(true);
+  const [game, setGame] = useState(0);
   const getWord = (word) =>
     axios
       .get(baseUrl)
@@ -56,33 +56,37 @@ function App() {
     setGuessList(temp);
   };
   const alphabetClick = (idx) => {
-    if (guesses === 0) {
-      setGame((prev) => (prev = false));
-      return;
-    }
     let alphabet = alphabets[idx];
     let w = word[0].toUpperCase();
     w = w.split("");
     let found = w.includes(alphabet);
+    if (guesses === 1 && found === false) {
+      setGame((prev) => (prev = 1));
+      return;
+    }
     let temp = guessList;
     if (found !== false) {
       for (let i = 0; i < w.length; i++) {
         if (w[i] === alphabet) temp[i] = alphabet;
       }
+      let final = temp.join("");
+      
+      if (final === word[0].toUpperCase()) setGame(2);
       setGuessList([...temp]);
     } else {
       setGuesses((prev) => prev - 1);
     }
   };
   const playAgain = () => {
-    setGame(true);
+    setGame(0);
     setGuesses(7);
     getWord();
   };
+  
   return (
     <div className="App">
       <h1>Hangman Game</h1>
-      {game ? (
+      {game === 0 ? (
         <>
           <div className="guesslist">
             {guessList.map((item, idx) => (
@@ -106,6 +110,11 @@ function App() {
       ) : (
         <>
           <h1>Game Over</h1>
+          {game === 1 ? (
+            <h2>Word was : {word[0].toUpperCase()}</h2>
+          ) : (
+            <h2>You won</h2>
+          )}
           <button onClick={() => playAgain()}>Play Again</button>
         </>
       )}
