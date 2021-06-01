@@ -70,7 +70,7 @@ function App() {
         if (w[i] === alphabet) temp[i] = alphabet;
       }
       let final = temp.join("");
-      
+
       if (final === word[0].toUpperCase()) setGame(2);
       setGuessList([...temp]);
     } else {
@@ -82,7 +82,7 @@ function App() {
     setGuesses(7);
     getWord();
   };
-  
+
   return (
     <div className="App">
       <h1>Hangman Game</h1>
@@ -104,8 +104,10 @@ function App() {
               </button>
             ))}
           </div>
-          <button onClick={() => getWord()}>Change word</button>
           <h1>Guesses left : {guesses}</h1>
+          <button class="otherBtn" onClick={() => getWord()}>
+            Change word
+          </button>
         </>
       ) : (
         <>
@@ -115,7 +117,9 @@ function App() {
           ) : (
             <h2>You won</h2>
           )}
-          <button onClick={() => playAgain()}>Play Again</button>
+          <button className="otherBtn" onClick={() => playAgain()}>
+            Play Again
+          </button>
         </>
       )}
     </div>
