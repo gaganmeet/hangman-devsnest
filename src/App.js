@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallBack } from "react";
 import "./App.css";
 import axios from "axios";
 
@@ -36,7 +36,8 @@ function App() {
   const [guessList, setGuessList] = useState([]);
   const [guesses, setGuesses] = useState(7);
   const [game, setGame] = useState(0);
-  const getWord = (word) =>
+
+  const getWord = () => {
     axios
       .get(baseUrl)
       .then((apidata) => {
@@ -44,6 +45,9 @@ function App() {
         return apidata.data;
       })
       .then((data) => makeEmpty(data));
+    console.log("abcd");
+  };
+
   useEffect(() => {
     getWord();
   }, []);
@@ -70,7 +74,7 @@ function App() {
         if (w[i] === alphabet) temp[i] = alphabet;
       }
       let final = temp.join("");
-      
+
       if (final === word[0].toUpperCase()) setGame(2);
       setGuessList([...temp]);
     } else {
@@ -82,7 +86,7 @@ function App() {
     setGuesses(7);
     getWord();
   };
-  
+
   return (
     <div className="App">
       <h1>Hangman Game</h1>
@@ -104,7 +108,7 @@ function App() {
               </button>
             ))}
           </div>
-          <button onClick={() => getWord()}>Change word</button>
+          <button onClick={playAgain()}>Change word</button>
           <h1>Guesses left : {guesses}</h1>
         </>
       ) : (
