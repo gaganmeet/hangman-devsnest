@@ -108,8 +108,10 @@ function App() {
               </button>
             ))}
           </div>
-          <button onClick={playAgain()}>Change word</button>
           <h1>Guesses left : {guesses}</h1>
+          <button class="otherBtn" onClick={() => playAgain()}>
+            Change word
+          </button>
         </>
       ) : (
         <>
@@ -119,7 +121,9 @@ function App() {
           ) : (
             <h2>You won</h2>
           )}
-          <button onClick={() => playAgain()}>Play Again</button>
+          <button className="otherBtn" onClick={() => playAgain()}>
+            Play Again
+          </button>
         </>
       )}
     </div>

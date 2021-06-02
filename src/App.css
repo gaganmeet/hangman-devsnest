@@ -85,6 +85,20 @@ select {
   flex-direction: row;
   letter-spacing: 10px;
 }
+.otherBtn {
+  width: 30%;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #252d4a;
+  border-radius: 15px;
+  display: flex;
+  padding: 5px;
+  justify-content: flex-start;
+  align-items: center;
+  border: 5px solid #234668;
+  cursor: pointer;
+  justify-content: center;
+}
 .guessBtn {
   display: flex;
   max-width: 60vh;
@@ -95,6 +109,11 @@ select {
 }
 .alphBtn {
   padding: 10px 15px;
+  min-width: 8%;
+  min-height: 10%;
+  border: 2px solid #234668;
+  padding: 10px;
+
   margin: 10px;
   display: inline-block;
   font-size: 16px;
