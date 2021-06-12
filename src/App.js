@@ -126,6 +126,8 @@ function App() {
           </button>
         </>
       )}
+      <p>Checkout project on </p>
+      <a href="https://github.com/gaganmeet/hangman-devsnest">Github</a>
     </div>
   );
 }
