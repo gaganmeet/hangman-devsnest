@@ -126,8 +126,10 @@ function App() {
           </button>
         </>
       )}
-      <p>Checkout project on </p>
-      <a href="https://github.com/gaganmeet/hangman-devsnest">Github</a>
+      <p>
+        Checkout project on
+        <a href="https://github.com/gaganmeet/hangman-devsnest">Github</a>
+      </p>
     </div>
   );
 }
